@@ -31,32 +31,32 @@ void draw() {
  void tileValue(){
    for (int i=0; i < 26; i++) {
     types[i] = new String();
-    types[1] =  "./Tiles/A.png";
-    types[2] =  "./Tiles/B.png";
-    types[3] =  "./Tiles/C.png";
-    types[4] =  "./Tiles/D.png";
-    types[5] =  "./Tiles/E.jpeg";
-    types[6] =  "./Tiles/F.png";
-    types[7] =  "./Tiles/G.jpeg";
-    types[8] =  "./Tiles/H.png";
-    types[9] =  "./Tiles/I.jpg";
-    types[10] =  "./Tiles/J.jpeg";
-    types[11] =  "./Tiles/K.png";
-    types[12] =  "./Tiles/L.jpeg";
-    types[13] =  "./Tiles/M.png";
-    types[14] =  "./Tiles/N.jpg";
-    types[15] =  "./Tiles/O.png";
-    types[16] =  "./Tiles/P.jpg";
-    types[17] =  "./Tiles/Q.png";
-    types[18] =  "./Tiles/R.jpg";
-    types[19] =  "./Tiles/S.png";
-    types[20] =  "./Tiles/T.png";
-    types[21] =  "./Tiles/U.png";
-    types[22] =  "./Tiles/V.png";
-    types[23] =  "./Tiles/W.png";
-    types[24] =  "./Tiles/X.png";
-    types[25] =  "./Tiles/Y.png";
-    types[26] =  "./Tiles/Z.jpeg";
+    types[0] =  "./Tiles/A.png";
+    types[1] =  "./Tiles/B.png";
+    types[2] =  "./Tiles/C.png";
+    types[3] =  "./Tiles/D.png";
+    types[4] =  "./Tiles/E.jpeg";
+    types[5] =  "./Tiles/F.png";
+    types[6] =  "./Tiles/G.jpeg";
+    types[7] =  "./Tiles/H.png";
+    types[8] =  "./Tiles/I.jpg";
+    types[9] =  "./Tiles/J.jpeg";
+    types[10] =  "./Tiles/K.png";
+    types[11] =  "./Tiles/L.jpeg";
+    types[12] =  "./Tiles/M.png";
+    types[13] =  "./Tiles/N.jpg";
+    types[14] =  "./Tiles/O.png";
+    types[15] =  "./Tiles/P.jpg";
+    types[16] =  "./Tiles/Q.png";
+    types[17] =  "./Tiles/R.jpg";
+    types[18] =  "./Tiles/S.png";
+    types[19] =  "./Tiles/T.png";
+    types[20] =  "./Tiles/U.png";
+    types[21] =  "./Tiles/V.png";
+    types[22] =  "./Tiles/W.png";
+    types[23] =  "./Tiles/X.png";
+    types[24] =  "./Tiles/Y.png";
+    types[25] =  "./Tiles/Z.jpeg";
     
    }
  }
@@ -64,7 +64,7 @@ void draw() {
 
 //tiles turn with each click
 void mouseReleased(){
-    list[current].img1 = loadImage(types[(int)random(27)]);
+    list[current].img1 = loadImage(types[(int)random(26)]);
     list[current].img1.resize(50, 50);
     current++;
   }
