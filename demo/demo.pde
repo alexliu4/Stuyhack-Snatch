@@ -47,6 +47,12 @@ void setup() {
     }
   }
   tileValue();
+  
+  //highlight
+  PImage dot = loadImage("greendot.png");
+  dot.resize(20,20);
+  image( dot, 1060, 35);
+  image( dot, 1060, 365);
 }
 
 //array to choose randomly from
@@ -118,6 +124,10 @@ void draw() {
     text (result, 950, playTwo);
     playTwo += 10;
     }
+    result = "";
+    PImage y = loadImage("white.png");
+    y.resize(500,30);
+    image(y , 850 , 340); //850
     state--;
     break;
   }
@@ -127,9 +137,10 @@ void keyPressed() {
   
   String ans = "";
  
-  if (key == ENTER|| key == RETURN) {
+  if (key == ENTER|| key == RETURN  ) {
     
     state++;
+    
   } else if (key == BACKSPACE || key == DELETE){
     if(result.length() > 0){
       result = result.substring(0,result.length()-1);
@@ -141,7 +152,7 @@ void keyPressed() {
   result = result + key;
   
 }
-
+/*
 //TURNS 
 void WordBank(String filename) throws FileNotFoundException{
 
@@ -170,10 +181,30 @@ void WordBank(String filename) throws FileNotFoundException{
   }
   return str;
     }
-
+*/
   
   void turn() {
-    if (timer > 12.0){
+    if (timer > 25.0){
       player = !player;
+      timer = 0.0;
+    }
+    if (player){
+        PImage dot = loadImage("greendot.png");
+  dot.resize(20,20);
+  image( dot, 1060, 35);
+
+      //change back
+      PImage whiteout = loadImage("white.png");
+      whiteout.resize(20,20);
+      image( whiteout, 1060, 365);
+    }else {
+        PImage dot = loadImage("greendot.png");
+  dot.resize(20,20);
+
+  image( dot, 1060, 365);
+      //change back
+      PImage whiteout = loadImage("white.png");
+      whiteout.resize(20,20);
+      image( whiteout, 1060, 35);
     }
   }
