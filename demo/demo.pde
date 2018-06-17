@@ -2,7 +2,7 @@
 
 //to setup tiles
 Tiles[] list = new Tiles[143];
-String[] types = new String[26];
+String[] types = new String[31];
 
 //to randomize
 int current = 0;
@@ -14,9 +14,12 @@ String result = "";
 //timer & player
 float timer = 0.0;
 boolean player;
-ArrayList<String> words;
 int playOne = 73;
 int playTwo = 395;
+
+//
+String[] words;
+
 
 
 //FUNCTIONS
@@ -53,6 +56,9 @@ void setup() {
   dot.resize(20,20);
   image( dot, 1060, 35);
   image( dot, 1060, 365);
+  
+  words = loadStrings("Words.txt");
+  
 }
 
 //array to choose randomly from
@@ -83,13 +89,18 @@ void setup() {
     types[23] =  "./Tiles/X.png";
     types[24] =  "./Tiles/Y.png";
     types[25] =  "./Tiles/Z.jpeg";
+    types[26] =  "./Tiles/A.png";
+    types[27] =  "./Tiles/E.jpeg";
+    types[28] =  "./Tiles/O.png";
+    types[29] =  "./Tiles/I.jpg";
+    types[30] =  "./Tiles/U.png";
     
  }
 
 
 //tiles turn with each click randomly
 void mouseReleased(){
-    list[current].img1 = loadImage(types[(int)random(26)]);
+    list[current].img1 = loadImage(types[(int)random(30)]);
     list[current].img1.resize(50, 50);
     current++;
   }
@@ -112,7 +123,7 @@ void draw() {
  switch (state) {
   case 0:
     fill(0); 
-    text ("Please enter something and hit enter to go on \n \n"+result, 950, 330); 
+    text ("Please enter something and hit enter to submit \n \n"+result, 950, 330); 
     break;
  
   case 1:
@@ -137,8 +148,8 @@ void keyPressed() {
   
   String ans = "";
  
-  if (key == ENTER|| key == RETURN  ) {
-    
+  if (key == ENTER|| key == RETURN ) {
+    if (isAWord(result))
     state++;
     
   } else if (key == BACKSPACE || key == DELETE){
@@ -152,9 +163,18 @@ void keyPressed() {
   result = result + key;
   
 }
+
+boolean isAWord(String w){
+   for (String x: words){
+     if (x.equals(w)){
+       return true;
+     }
+   }
+   return false;
+}
 /*
 //TURNS 
-void WordBank(String filename) throws FileNotFoundException{
+void WordBank(String filename) {
 
   words = new ArrayList<String>();
   
@@ -167,7 +187,7 @@ void WordBank(String filename) throws FileNotFoundException{
       words.add(word);
     }
     
-  }
+  } 
 
   boolean isAWord(String w){
    return words.indexOf(w) != -1;
@@ -181,8 +201,10 @@ void WordBank(String filename) throws FileNotFoundException{
   }
   return str;
     }
+    
+//
+
 */
-  
   void turn() {
     if (timer > 25.0){
       player = !player;
