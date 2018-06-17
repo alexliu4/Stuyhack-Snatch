@@ -2,7 +2,7 @@
 
 //to setup tiles
 Tiles[] list = new Tiles[143];
-String[] types = new String[26];
+String[] types = new String[28];
 
 //to randomize
 int current = 0;
@@ -13,6 +13,7 @@ int state = 0;
 String result = "";
 
 //timer & player
+float starter = 0.1;
 float timer = 0.0;
 boolean player;
 int playOne = 73;
@@ -92,9 +93,9 @@ void setup() {
     types[23] =  "./Tiles/X.png";
     types[24] =  "./Tiles/Y.png";
     types[25] =  "./Tiles/Z.jpeg";
-    /*
     types[26] =  "./Tiles/A.png";
     types[27] =  "./Tiles/E.jpeg";
+    /*
     types[28] =  "./Tiles/O.png";
     types[29] =  "./Tiles/I.jpg";
     types[30] =  "./Tiles/U.png";
@@ -108,6 +109,12 @@ void mouseReleased(){
   if (!clicked){
     randoms = (int)random(26);
     String temp = "";
+    if (randoms == 26 ){
+      randoms = 1;
+    }
+    if (randoms == 27){
+      randoms = 4;
+    }
     temp += (char)(randoms + 97);
     list[current].img1 = loadImage(types[randoms]);
     list[current].img1.resize(50, 50);
@@ -161,13 +168,10 @@ void keyPressed() {
   String ans = "";
   boolean good = true;
   if (key == ENTER|| key == RETURN ) {
-    if (isAWord(result) && available.size() > 1){
-      println(good);
+    if (isAWord(result) && available.size() > 1 && result.length() > 1){
       for (int i = 0; i < result.length(); i++){
         if (good)
           good = (isALetter(result.substring(i,i+1)));
-          println(available);
-         println(good);
       }
       if (good)
          state++;
@@ -235,7 +239,7 @@ void WordBank(String filename) {
 
 */
   void turn() {
-    if (timer > 15.0){
+    if (timer > 17.0){
       player = !player;
       timer = 0.0;
       clicked = false;
