@@ -29,8 +29,6 @@ void draw() {
 
 //randomizes value for tiles
  void tileValue(){
-   for (int i=0; i < 26; i++) {
-    types[i] = new String();
     types[0] =  "./Tiles/A.png";
     types[1] =  "./Tiles/B.png";
     types[2] =  "./Tiles/C.png";
@@ -58,13 +56,12 @@ void draw() {
     types[24] =  "./Tiles/Y.png";
     types[25] =  "./Tiles/Z.jpeg";
     
-   }
  }
 
 
 //tiles turn with each click
 void mouseReleased(){
-    list[current].img1 = loadImage(types[(int)random(26)]);
+    list[current].img1 = loadImage(types[5]);
     list[current].img1.resize(50, 50);
     current++;
   }
