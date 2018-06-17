@@ -16,8 +16,7 @@ float timer = 0.0;
 boolean player;
 int playOne = 73;
 int playTwo = 395;
-
-//
+boolean clicked = false;
 String[] words;
 
 
@@ -100,10 +99,13 @@ void setup() {
 
 //tiles turn with each click randomly
 void mouseReleased(){
+  if (!clicked){
     list[current].img1 = loadImage(types[(int)random(30)]);
     list[current].img1.resize(50, 50);
     current++;
+    clicked = true;
   }
+}
   
 //makes the tiles appear
 void draw() {
@@ -206,24 +208,25 @@ void WordBank(String filename) {
 
 */
   void turn() {
-    if (timer > 25.0){
+    if (timer > 15.0){
       player = !player;
       timer = 0.0;
+      clicked = false;
     }
     if (player){
-        PImage dot = loadImage("greendot.png");
-  dot.resize(20,20);
-  image( dot, 1060, 35);
+       PImage dot = loadImage("greendot.png");
+       dot.resize(20,20);
+       image( dot, 1060, 35);
 
       //change back
       PImage whiteout = loadImage("white.png");
       whiteout.resize(20,20);
       image( whiteout, 1060, 365);
     }else {
-        PImage dot = loadImage("greendot.png");
-  dot.resize(20,20);
-
-  image( dot, 1060, 365);
+      PImage dot = loadImage("greendot.png");
+      dot.resize(20,20);
+      image( dot, 1060, 365);
+      
       //change back
       PImage whiteout = loadImage("white.png");
       whiteout.resize(20,20);
