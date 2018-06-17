@@ -1,21 +1,29 @@
-class Tiles{
-  
-  PImage img = loadImage("./Tiles/B.png");
+class Tiles {
+
   int xCor;
   int yCor;
+  PImage img1 = loadImage("./Tiles/blank.jpg");
+
+  Tiles() {
+    img1.resize(50, 50);
+ }
+ 
+ Tiles(int x, int y) {
+    xCor = x;
+    yCor = y;
+    img1.resize(50, 50);
+    // rotate(PI/random(1, 5));
+ }
   
-  Tiles(){
-    xCor = 100;
-    yCor = 100;
-    img.resize(50,50);
-    translate(width/2-img.width/2, height/2-img.height/2);
-    rotate(PI/random(1, 5));
-    
-  }
-  void appear(){
-    image(img, xCor, yCor);
-  }
-
-
-
+  void appearBlank() {
+    image(img1, xCor, yCor);      
+ }
+ 
+ void tileValue(){
+   Tiles[] types = new Tiles[26];
+   for (int i=0; i < 26; i++) {
+    types[i] = new Tiles();
+    types[i].img1 =  loadImage("./Tiles/A.png");
+   }
+ }
 }
