@@ -18,7 +18,7 @@ class Tiles {
   void appearBlank() {
     image(img1, xCor, yCor);      
  }
- 
+ /*
  void tileValue(){
    Tiles[] types = new Tiles[26];
    for (int i=0; i < 26; i++) {
@@ -26,4 +26,5 @@ class Tiles {
     types[i].img1 =  loadImage("./Tiles/A.png");
    }
  }
+ */
 }
