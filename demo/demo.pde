@@ -18,6 +18,7 @@ void setup() {
       }
     }
   }
+  tileValue();
 }
 
 //makes the tiles appear
@@ -61,7 +62,7 @@ void draw() {
 
 //tiles turn with each click
 void mouseReleased(){
-    list[current].img1 = loadImage(types[5]);
+    list[current].img1 = loadImage(types[(int)random(26)]);
     list[current].img1.resize(50, 50);
     current++;
   }
