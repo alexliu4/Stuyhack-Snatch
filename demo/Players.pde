@@ -9,6 +9,7 @@ class Players {
   
   File text = new File(filename);
   Scanner inputFile = new Scanner(text);
+  
 
   while (inputFile.hasNextLine()){
       String word = inputFile.nextLine().trim();
@@ -32,10 +33,9 @@ class Players {
 
   
   void turn() {
-    WordBank("WordList.txt");
-    if (isAWord("hey")){
+    if (isAWord(result)){
       playerOne = !playerOne;
-    }else if (timer > 10.0){
+    }else if (timer > 12.0){
       playerOne = !playerOne;
     }
   }

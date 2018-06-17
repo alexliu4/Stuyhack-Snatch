@@ -14,6 +14,9 @@ String result = "";
 //timer & player
 float timer = 0.0;
 boolean player;
+ArrayList<String> words;
+int playOne = 73;
+int playTwo = 395;
 
 
 //FUNCTIONS
@@ -98,6 +101,8 @@ void draw() {
   text("PLAYER 1", 1000, 50);
   text("PLAYER 2", 1000, 380);
   
+  turn();
+  
  switch (state) {
   case 0:
     fill(0); 
@@ -106,7 +111,14 @@ void draw() {
  
   case 1:
     fill(255, 2, 2); 
-    text (result, 950, 633); 
+    if (player){
+      text(result, 950, playOne);
+      playOne += 10;
+    }else {
+    text (result, 950, playTwo);
+    playTwo += 10;
+    }
+    state--;
     break;
   }
 }
@@ -116,17 +128,52 @@ void keyPressed() {
   String ans = "";
  
   if (key == ENTER|| key == RETURN) {
- 
+    
     state++;
   } else if (key == BACKSPACE || key == DELETE){
     if(result.length() > 0){
       result = result.substring(0,result.length()-1);
       PImage y = loadImage("white.png");
-      y.resize(500,700);
-      image(y , 850 , 1);
+      y.resize(500,30);
+      image(y , 850 , 340); //850
     }
   } else
   result = result + key;
   
-
 }
+
+//TURNS 
+void WordBank(String filename) throws FileNotFoundException{
+
+  words = new ArrayList<String>();
+  
+  File text = new File(filename);
+  Scanner inputFile = new Scanner(text);
+  
+
+  while (inputFile.hasNextLine()){
+      String word = inputFile.nextLine().trim();
+      words.add(word);
+    }
+    
+  }
+
+  boolean isAWord(String w){
+   return words.indexOf(w) != -1;
+  }
+  
+  String toString(){
+    String str = "";
+  for (String s: words){
+      System.out.println(s);
+      str += s;
+  }
+  return str;
+    }
+
+  
+  void turn() {
+    if (timer > 12.0){
+      player = !player;
+    }
+  }
