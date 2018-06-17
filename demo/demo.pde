@@ -2,10 +2,11 @@
 
 //to setup tiles
 Tiles[] list = new Tiles[143];
-String[] types = new String[31];
+String[] types = new String[26];
 
 //to randomize
 int current = 0;
+int randoms = 0;
 
 //for textbox
 int state = 0;
@@ -17,7 +18,10 @@ boolean player;
 int playOne = 73;
 int playTwo = 395;
 boolean clicked = false;
+
+//checkers
 String[] words;
+ArrayList<String> available = new ArrayList<String>();
 
 
 
@@ -88,22 +92,28 @@ void setup() {
     types[23] =  "./Tiles/X.png";
     types[24] =  "./Tiles/Y.png";
     types[25] =  "./Tiles/Z.jpeg";
+    /*
     types[26] =  "./Tiles/A.png";
     types[27] =  "./Tiles/E.jpeg";
     types[28] =  "./Tiles/O.png";
     types[29] =  "./Tiles/I.jpg";
     types[30] =  "./Tiles/U.png";
+    */
     
  }
 
 
-//tiles turn with each click randomly
+//tiles turn with each click
 void mouseReleased(){
   if (!clicked){
-    list[current].img1 = loadImage(types[(int)random(30)]);
+    randoms = (int)random(26);
+    String temp = "";
+    temp += (char)(randoms + 97);
+    list[current].img1 = loadImage(types[randoms]);
     list[current].img1.resize(50, 50);
     current++;
     clicked = true;
+    available.add(temp);
   }
 }
   
@@ -149,11 +159,19 @@ void draw() {
 void keyPressed() {
   
   String ans = "";
- 
+  boolean good = true;
   if (key == ENTER|| key == RETURN ) {
-    if (isAWord(result))
-    state++;
-    
+    if (isAWord(result) && available.size() > 1){
+      println(good);
+      for (int i = 0; i < result.length(); i++){
+        if (good)
+          good = (isALetter(result.substring(i,i+1)));
+          println(available);
+         println(good);
+      }
+      if (good)
+         state++;
+    }
   } else if (key == BACKSPACE || key == DELETE){
     if(result.length() > 0){
       result = result.substring(0,result.length()-1);
@@ -169,6 +187,15 @@ void keyPressed() {
 boolean isAWord(String w){
    for (String x: words){
      if (x.equals(w)){
+       return true;
+     }
+   }
+   return false;
+}
+
+boolean isALetter(String w){
+   for (String x: available){
+     if ( (x).equals(w)){
        return true;
      }
    }
