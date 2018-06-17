@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
  class WordBank{
 
-     ArrayList<String> words;
+  ArrayList<String> words;
     
-     WordBank(String filename) throws FileNotFoundException{
+  WordBank(String filename) throws FileNotFoundException{
 
   words = new ArrayList<String>();
   
@@ -20,14 +20,14 @@ import java.util.Scanner;
   }
   
      
-    }
+  }
 
-     boolean isAWord(String w){
-  return words.indexOf(w) != -1;
-    }
+  boolean isAWord(String w){
+   return words.indexOf(w) != -1;
+  }
 
-     String toString(){
-  String str = "";
+  String toString(){
+    String str = "";
   for (String s: words){
       System.out.println(s);
       str += s;

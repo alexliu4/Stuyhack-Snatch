@@ -1,13 +1,38 @@
+//GLOBAL VARIABLES
+
+//to setup tiles
 Tiles[] list = new Tiles[143];
 String[] types = new String[26];
+
+//to randomize
 int current = 0;
+
+//for textbox
+int state = 0;
+String result = "";
+
+//timer & player
+float timer = 0.0;
+boolean player;
+
+
+//FUNCTIONS
 
 //sets up background and tiles
 void setup() {
-  size(1100, 700);
+  
+  //wooden background
+  size(1300, 700);
   PImage x = loadImage("images.jpeg");
-  x.resize(width, height);
+  x.resize(1300, 700);
   background(x);
+  
+  //white textbox side
+  PImage y = loadImage("white.png");
+  y.resize(500,700);
+  image(y , 850 , 1);
+  
+  //tiles
   for (int i=0; i < 143; ) {
     for (int row = 50; row < 1050; row+= 55 ){
       for (int col = 50; col < 650; col+=55){
@@ -21,14 +46,7 @@ void setup() {
   tileValue();
 }
 
-//makes the tiles appear
-void draw() {
-  for (int i=0; i < 143; i++) {
-    list[i].appearBlank();
-  }
-}
-
-//randomizes value for tiles
+//array to choose randomly from
  void tileValue(){
     types[0] =  "./Tiles/A.png";
     types[1] =  "./Tiles/B.png";
@@ -60,9 +78,55 @@ void draw() {
  }
 
 
-//tiles turn with each click
+//tiles turn with each click randomly
 void mouseReleased(){
     list[current].img1 = loadImage(types[(int)random(26)]);
     list[current].img1.resize(50, 50);
     current++;
   }
+  
+//makes the tiles appear
+void draw() {
+  //increment timer 
+  timer += 0.1;
+  
+  for (int i=0; i < 143; i++) {
+    list[i].appearBlank();
+  }
+  
+  //Player labels
+  text("PLAYER 1", 1000, 50);
+  text("PLAYER 2", 1000, 380);
+  
+ switch (state) {
+  case 0:
+    fill(0); 
+    text ("Please enter something and hit enter to go on \n \n"+result, 950, 330); 
+    break;
+ 
+  case 1:
+    fill(255, 2, 2); 
+    text (result, 950, 633); 
+    break;
+  }
+}
+ 
+void keyPressed() {
+  
+  String ans = "";
+ 
+  if (key == ENTER|| key == RETURN) {
+ 
+    state++;
+  } else if (key == BACKSPACE || key == DELETE){
+    if(result.length() > 0){
+      result = result.substring(0,result.length()-1);
+      PImage y = loadImage("white.png");
+      y.resize(500,700);
+      image(y , 850 , 1);
+    }
+  } else
+  result = result + key;
+  
+
+}
