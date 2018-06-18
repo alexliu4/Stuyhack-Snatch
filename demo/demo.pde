@@ -33,6 +33,7 @@ void setup() {
   
   //wooden background
   size(1300, 700);
+  
   PImage x = loadImage("images.jpeg");
   x.resize(1300, 700);
   background(x);
